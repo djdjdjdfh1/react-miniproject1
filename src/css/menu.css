@@ -1,0 +1,79 @@
+@font-face {
+    font-family: 'BookkMyungjo-Bd';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2302@1.0/BookkMyungjo-Bd.woff2') format('woff2');
+    font-weight: 700;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'MBC1961GulimM';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2304-01@1.0/MBC1961GulimM.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+}
+@import url('//cdn.jsdelivr.net/font-iropke-batang/1.2/font-iropke-batang.css');
+
+h3, p {
+    font-family: 'font-iropke-batang';
+    font-size: 0.9rem;
+}
+h1 {
+    font-size: 1.7rem;
+}
+input[type='submit'] {
+    margin-top: 5px;
+}
+
+.background {
+    background-color: antiquewhite;
+    min-height: 100vh;
+    padding-top: 80px;
+}
+.box-wrap {
+    max-width: 1200px;
+    margin: auto;
+}
+.img {
+    border-radius: 10px;
+}
+.img-box {
+    display: inline-block;
+    width: 280px;
+    height: 350px;
+    background-color: white;
+    border-radius: 10px;
+    text-align: center;
+    margin: 10px; 
+}
+.img-box .img {
+    margin: auto;
+    width: 250px;    
+    height: 250px;
+    background-size: cover;
+}
+.img-box h3 {
+    margin-top: 10px;
+}
+.img-box p {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    word-break: break-all;
+}
+.menu-header {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+}
+/* 좋아요 이모티콘 */
+.like {
+    background-image: url(../img/heart.svg);
+    width: 20px;
+    height: 20px;
+    margin: 5px 0 0 5px;
+}
+.click-like {
+    background-image: url(../img/heart1.svg);
+    width: 20px;
+    height: 20px;
+    margin: 5px 0 0 5px;
+}

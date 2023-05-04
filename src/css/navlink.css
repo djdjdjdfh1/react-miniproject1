@@ -1,0 +1,36 @@
+@font-face {
+    font-family: 'BookkMyungjo-Bd';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2302@1.0/BookkMyungjo-Bd.woff2') format('woff2');
+    font-weight: 700;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'MBC1961GulimM';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2304-01@1.0/MBC1961GulimM.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+}
+
+.nav-box {
+    /* background-color: rgb(255, 139, 97)*/
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    min-height: 60px;
+    width: 100%;
+    /* 포지션 픽스드 되면서 화면에 고정값이 사라져서 밑의 메인 컴퍼넌트가 위로 올라옴*/
+    position: fixed;
+    padding: 10px;
+    z-index: 100;
+}
+.nav-home {
+    display: flex;
+}
+a {
+    text-decoration: none;
+    color: white;
+    font-size: 1.3rem;
+    font-weight: bold;
+    font-family: 'BookkMyungjo-Bd';
+    padding: 0 20px;
+}
