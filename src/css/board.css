@@ -1,0 +1,22 @@
+.board-title {
+    text-align: center;
+    font-family: 'MBC1961GulimM';
+    font-size: 1.8rem;
+    padding: 10px;
+}
+.board-img {
+    background-size: cover;
+    height: 400px;
+}
+.board-desc p {
+    font-family: 'font-iropke-batang';
+    padding-bottom: 10px;
+    text-align: left;
+}
+.bold {
+    font-weight: bold;
+    padding: 10px 0 10px 0;
+}
+.comment {
+    border: 1px solid black;
+}

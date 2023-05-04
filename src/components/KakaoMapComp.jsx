@@ -1,6 +1,4 @@
 import React, { useEffect } from 'react'
-import JsonData from '../context/JsonData';
-import { useContext } from 'react';
 
 export default function KakaoMapComp({obj}) {
     const kakao = window.kakao;
@@ -28,7 +26,7 @@ export default function KakaoMapComp({obj}) {
 
   return (
     <div>
-        <div id="map" style={{width:"500px", height:"400px"}}></div>
+        <div id="map" style={{height: "400px"}}></div>
     </div>
   )
 }

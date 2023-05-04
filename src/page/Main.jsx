@@ -41,7 +41,7 @@ export default function Main() {
       const a = [];
       const mySet = new Set();  
 
-      while(mySet.size<8 && menuList.length !== 0) {
+      while(mySet.size<6 && menuList.length !== 0) {
         mySet.add(Math.floor(Math.random()*menuList.length))
       }
       mySet.forEach((n)=>a.push(menuList[n]))
@@ -68,7 +68,7 @@ export default function Main() {
   }
 
   return (
-    <div style={{backgroundColor: "antiquewhite"}}>
+    <div>
       <SectionsContainer {...options}>
         <Section>
           <div className='background-img'></div>
@@ -104,7 +104,7 @@ export default function Main() {
         </Section>
         <Section>
           {/* 랜덤음식박스 */}  
-          <div className='box-wrap' style={{paddingTop: "140px", minHeight: "100vh"}}>
+          <div className='box-wrap' style={{paddingTop: "140px"}}>
               {loading && ranMenu.map((item)=>(
                 <div 
                 key={item.UC_SEQ}
@@ -117,14 +117,18 @@ export default function Main() {
                   > 
                   </div>
 
-                  {/* 작은사진 */}
-                  <div className= 'img' 
-                  style={{backgroundImage: `url(${item.MAIN_IMG_THUMB})`}}             
-                  >
+                  {/* 미니창 */}
+                  <div 
+                    className='img' 
+                    style={{backgroundImage: `url(${item.MAIN_IMG_THUMB})`}}
+                    >
                   </div>
-                  <h3>{item.MAIN_TITLE}</h3>
-                  <p>{item.ADDR1}</p>
-                  <p>{item.USAGE_DAY_WEEK_AND_TIME}</p>
+                  <div className='description'>
+                    <h2>{item.MAIN_TITLE}</h2>
+                    <p>{item.GUGUN_NM}</p>
+                    <p>대표 메뉴</p>
+                    <p>{item.RPRSNTV_MENU}</p>
+                  </div>
                 </div>
               ))}
             </div>

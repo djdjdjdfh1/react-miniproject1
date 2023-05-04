@@ -12,68 +12,67 @@
 }
 @import url('//cdn.jsdelivr.net/font-iropke-batang/1.2/font-iropke-batang.css');
 
-h3, p {
-    font-family: 'font-iropke-batang';
-    font-size: 0.9rem;
-}
-h1 {
-    font-size: 1.7rem;
-}
 input[type='submit'] {
     margin-top: 5px;
 }
 
 .background {
-    background-color: antiquewhite;
     min-height: 100vh;
     padding-top: 80px;
-}
-.box-wrap {
-    max-width: 1200px;
-    margin: auto;
-}
-.img {
-    border-radius: 10px;
-}
-.img-box {
-    display: inline-block;
-    width: 280px;
-    height: 350px;
-    background-color: white;
-    border-radius: 10px;
-    text-align: center;
-    margin: 10px; 
-}
-.img-box .img {
-    margin: auto;
-    width: 250px;    
-    height: 250px;
-    background-size: cover;
-}
-.img-box h3 {
-    margin-top: 10px;
-}
-.img-box p {
-    overflow: hidden;
-    white-space: nowrap;
-    text-overflow: ellipsis;
-    word-break: break-all;
 }
 .menu-header {
     display: flex;
     justify-content: space-between;
     padding: 20px;
 }
+.box-wrap {
+    width: 95%;
+    margin: auto;
+}
+.img-box {
+    position: relative;
+    display: inline-block;
+    background-color: antiquewhite;
+    width: 400px;
+    height: 180px;
+    margin: 10px; 
+}
+.description {
+    text-align: left;
+}
+.img-box .img {
+    width: 230px;    
+    height: 180px;
+    background-size: cover;
+    float: left;
+    margin-right: 10px;
+}
+.img-box h2 {
+    font-family: 'font-iropke-batang';
+    font-size: 1.2rem;
+    font-weight: bold;
+    padding: 30px 0 20px 0;
+}
+.img-box p {
+    font-family: 'font-iropke-batang';
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    word-break: break-all;
+    padding-bottom: 15px ;
+}
 /* 좋아요 이모티콘 */
 .like {
+    position: absolute;
     background-image: url(../img/heart.svg);
-    width: 20px;
-    height: 20px;
-    margin: 5px 0 0 5px;
+    width: 30px;
+    height: 30px;
+    right: 0;
 }
 .click-like {
+    position: absolute;
     background-image: url(../img/heart1.svg);
-    width: 20px;
-    height: 20px;
-    margin: 5px 0 0 5px;
+    width: 30px;
+    height: 30px;
+    right: 0;
 }

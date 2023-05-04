@@ -26,11 +26,18 @@
 .nav-home {
     display: flex;
 }
-a {
-    text-decoration: none;
-    color: white;
+.nav-home h1 {
+    padding-left: 10px;
+    font-size: 1.7rem;
+}
+.nav-menu a {
     font-size: 1.3rem;
     font-weight: bold;
     font-family: 'BookkMyungjo-Bd';
     padding: 0 20px;
+}
+a {
+    text-decoration: none;
+    color: black;
+    
 }

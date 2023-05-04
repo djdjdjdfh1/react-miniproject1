@@ -6,6 +6,9 @@ import JsonData from '../context/JsonData';
 import '../css/menu.css'
 import { Link } from 'react-router-dom';
 
+import Slider from "react-slick";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 
 export default function Menu() {
   const {state, action, func} = useContext(JsonData);
@@ -13,9 +16,7 @@ export default function Menu() {
   const {setMenuList, setNum, setCommentList, setLikelist} = action;
   const {getMenu} = func;
 
-  const [lightimg, setLightimg] = useState();
   const [text, setText] = useState("");
-  const [preComment, setPreComment] = useState("");
   const [star, setStar] = useState(null);
   const [loading, setLoading] = useState(false);
 
@@ -31,11 +32,6 @@ export default function Menu() {
     const newList = commentList.concat(newComment);
     setCommentList(newList);
   }
-
-  const showComment = (UC_SEQ) => {
-    const cList = commentList.filter((a)=>(a.UC_SEQ === UC_SEQ))
-    return cList; 
-  }
   
   useEffect(()=>{getMenu()}, []);
   useEffect(()=>{
@@ -45,7 +41,7 @@ export default function Menu() {
   }, [menuList])
 
   const [currentPage, setCurrentPage] = useState(1);
-  const [itemsPerPage, setItemsPerPage] = useState(16);
+  const [itemsPerPage, setItemsPerPage] = useState(150);
   const indexOfLastItem = currentPage * itemsPerPage;
   const currentItems = menuList.slice(0, indexOfLastItem);
   
@@ -91,6 +87,17 @@ export default function Menu() {
     } 
   }
 
+  const settings = {
+    autoplay: true,
+    autoplaySpeed: 5000,
+    rows: 2,
+    dots: true,
+    infinite: true,
+    speed: 500,
+    slidesToShow: 3,
+    slidesToScroll: 3
+  };
+
   return (
     <div className='background'>
         <div className='menu-header'>
@@ -102,6 +109,7 @@ export default function Menu() {
         </div>
 
         <div className='box-wrap'>
+          <Slider {...settings}>
           {loading && currentItems.map((item)=>(
           <Link key={item.UC_SEQ} to={`/menu/${item.UC_SEQ}`}>
             <div
@@ -113,48 +121,22 @@ export default function Menu() {
               onClick={()=>{handleLike(item)}}
               >
               </div>
-                  <form 
-                  onSubmit={(e)=>{
-                    e.preventDefault();
-                    addComment(preComment);
-                    setText("");
-                    setStar("");
-                  }}
-                  >
-                    <label htmlFor="">내용 </label>
-                    <input 
-                    type="text"
-                    onChange={(e)=>(setText(e.target.value))}
-                    value={text}
-                    placeholder='평가를 작성하세요.'
-                    required
-                    />
-                    <br />
-                    <label htmlFor="">별점 </label>
-                    <input 
-                    type="number" 
-                    min={1} max={5} 
-                    placeholder="1~5사이의 정수를 입력하세요."
-                    style={{width: "200px"}}
-                    onChange={(e)=>{setStar(e.target.value)}}
-                    value={star}
-                    required
-                    />
-                    <br />
-                    <input type="submit" value="등록" />
-                  </form>
 
               {/* 미니창 */}
-              <div className= 'img' 
+              <div className='img' 
               style={{backgroundImage: `url(${item.MAIN_IMG_THUMB})`}}
               >
               </div>
-              <h3 style={{backgroundColor: "black"}}>{item.MAIN_TITLE}</h3>
-              <p style={{backgroundColor: "black"}}>{item.ADDR1}</p>
-              <p style={{backgroundColor: "black"}}>{item.USAGE_DAY_WEEK_AND_TIME}</p>
+              <div className='description'>
+                <h2>{item.MAIN_TITLE}</h2>
+                <p>{item.GUGUN_NM}</p>
+                <p>대표 메뉴</p>
+                <p>{item.RPRSNTV_MENU}</p>
+              </div>
             </div>
           </Link>
           ))}
+          </Slider>
           { 
             currentItems && (
             <button 

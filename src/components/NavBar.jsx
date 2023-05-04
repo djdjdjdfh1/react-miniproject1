@@ -29,12 +29,12 @@ export default function NavBar() {
   return (
     <div 
     className='nav-box'
-    style={{ backgroundColor: isScrolled || isHovered ? '#F9E1CF' : 'transparent'}}
+    style={{ backgroundColor: isScrolled || isHovered ? '#F9E1CF' : 'white'}}
     onMouseEnter={()=> setIsHovered(true)}
     onMouseLeave={()=> setIsHovered(false)}
     >   
         <div className='nav-home'>
-          <FontAwesomeIcon icon={faUtensils} color='white' size='2x'/>
+          <FontAwesomeIcon icon={faUtensils} color='black' size='2x'/>
           <Link to={`/`}><h1>ENJOY FOOD</h1></Link>
         </div>
         <div className='nav-menu'>
