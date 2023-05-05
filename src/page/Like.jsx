@@ -2,16 +2,14 @@ import React, { useContext } from 'react'
 import { useState } from 'react';
 import '../css/menu.css'
 import JsonData from '../context/JsonData';
+import StarRating from '../components/StarRating';
 
 export default function Like() {
   const { state, action } = useContext(JsonData);
   const { likelist, commentList, num } = state;
   const { setLikelist, setCommentList, setNum } = action;
 
-  const [lightimg, setLightimg] = useState();
-
   const [text, setText] = useState("");
-  const [preComment, setPreComment] = useState("");
 
   const [star, setStar] = useState(null);
 
@@ -48,75 +46,15 @@ export default function Like() {
             key={item.UC_SEQ}
             className='img-box'
             > 
-            {/* 좋아요 이모티콘 */}
-              <div 
-              className= "click-like"
-              onClick={()=>{handleLike(item)}}
-              > 
-              </div>
-
-              {/* 모달창 */}
-              <div className={lightimg ? 'light-box-on' : 'light-box-off'}> 
-                <div >
-                  <button
-                  onClick={()=>{
-                    setLightimg(null);
-                  }}
-                  className='btn'
-                  >
-                    X
-                  </button>
-                  <img src={lightimg}></img>
-                  <br />
-                  <br />
-                  <form
-                    onSubmit={(e)=>{
-                      e.preventDefault();
-                      addComment(preComment);
-                      setText("");
-                      setStar("");
-                    }}
-                  >
-                    <label htmlFor="">내용 </label>
-                    <input 
-                    type="text" 
-                    onChange={(e)=>(setText(e.target.value))}
-                    value={text}
-                    placeholder='평가를 작성하세요.'
-                    required
-                    />
-                    <br />
-                    <label htmlFor="">별점 </label>
-                    <input 
-                    type="number" 
-                    min={1} max={5} 
-                    placeholder="1~5사이의 정수를 입력하세요."
-                    style={{width: "200px"}}
-                    onChange={(e)=>{setStar(e.target.value)}}
-                    value={star}
-                    required
-                    />
-                    <br />
-                    <input type="submit" value="등록" />
-                  </form>
-                  <hr />
-                  {showComment(preComment).map((comment, i)=>(
-                    <p key={i}>익명 : {comment.text} / 별점: {comment.rating}</p>
-                  ))}
-                </div> 
-              </div>
-
               <div className= 'img' 
-              style={{backgroundImage: `url(${item.img})`}}
-              onClick={()=>{
-                setLightimg(item.img);
-                setPreComment(item.UC_SEQ);
-              }}              
+              style={{backgroundImage: `url(${item.img})`}}              
               >
               </div>
-              <h3>{item.title}</h3>
+              <StarRating />
+              <h2>{item.title}</h2>
               <p>{item.address}</p>
-              <p>{item.time}</p>
+              <p>대표메뉴</p>
+              <p>{item.menu}</p>
             </div>
           ))}
         </div>

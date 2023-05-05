@@ -1,4 +1,5 @@
 import React, {useState, useEffect} from 'react'
+import { Link } from 'react-router-dom';
 // Import Swiper React components
 import { Swiper, SwiperSlide } from "swiper/react";
 
@@ -23,10 +24,9 @@ export default function Main() {
   };
 
   const [ranMenu, setRanMenu] = useState([]);
-  const {state, func, action} = useContext(JsonData);
-  const {menuList, likelist} = state;
-  const {getMenu} = func;
-  const {setLikelist} = action;
+  const { state, func } = useContext(JsonData);
+  const { menuList } = state;
+  const { getMenu } = func;
   const [loading, setLoading] = useState(false);
   useEffect(()=>{getMenu()}, [])
   useEffect(()=>{
@@ -50,22 +50,6 @@ export default function Main() {
     genRandom2();
     console.log(ranMenu);
   }, [menuList])
-
-  const handleLike = (item) => {
-    if(likelist.find((like)=>(like.UC_SEQ === item.UC_SEQ))) {
-      const remainList = likelist.filter((l)=>(l.UC_SEQ !== item.UC_SEQ))
-      setLikelist(remainList);
-    } else {
-      const addList = likelist.concat({
-        UC_SEQ: item.UC_SEQ,
-        img: item.MAIN_IMG_THUMB,
-        title: item.MAIN_TITLE,
-        address: item.ADDR1,
-        time: item.USAGE_DAY_WEEK_AND_TIME
-      })
-      setLikelist(addList);
-    }
-  }
 
   return (
     <div>
@@ -106,17 +90,11 @@ export default function Main() {
           {/* 랜덤음식박스 */}  
           <div className='box-wrap' style={{paddingTop: "140px"}}>
               {loading && ranMenu.map((item)=>(
+                <Link key={item.UC_SEQ} to={`/menu/${item.UC_SEQ}`}>
                 <div 
                 key={item.UC_SEQ}
                 className='img-box'
                 > 
-                {/* 좋아요 이모티콘 */}
-                  <div 
-                  className={ likelist.find((like)=>(like.UC_SEQ === item.UC_SEQ)) ? "click-like" : "like"}
-                  onClick={()=>{handleLike(item)}}
-                  > 
-                  </div>
-
                   {/* 미니창 */}
                   <div 
                     className='img' 
@@ -130,6 +108,7 @@ export default function Main() {
                     <p>{item.RPRSNTV_MENU}</p>
                   </div>
                 </div>
+                </Link>
               ))}
             </div>
         </Section>

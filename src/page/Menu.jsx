@@ -9,29 +9,16 @@ import { Link } from 'react-router-dom';
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import StarRating from '../components/StarRating';
 
 export default function Menu() {
   const {state, action, func} = useContext(JsonData);
-  const {menuList, commentList, num, likelist} = state;
-  const {setMenuList, setNum, setCommentList, setLikelist} = action;
+  const {menuList, commentList} = state;
+  const {setMenuList} = action;
   const {getMenu} = func;
 
-  const [text, setText] = useState("");
-  const [star, setStar] = useState(null);
   const [loading, setLoading] = useState(false);
 
-  // cid라는 속성이 필요할까
-  const addComment = (c) => {
-    const newComment = {
-      cid : num,
-      UC_SEQ : c,
-      text : text,
-      rating : star
-    }
-    setNum(num +1);
-    const newList = commentList.concat(newComment);
-    setCommentList(newList);
-  }
   
   useEffect(()=>{getMenu()}, []);
   useEffect(()=>{
@@ -92,20 +79,20 @@ export default function Menu() {
           </select>
         </div>
 
-        <div className='box-wrap'>
+        <div className='box-wrap-ver2'>
           <Slider {...settings}>
           {loading && currentItems.map((item)=>(
           <Link key={item.UC_SEQ} to={`/menu/${item.UC_SEQ}`}>
             <div
             className='img-box'
             > 
-            
               {/* 미니창 */}
               <div className='img' 
               style={{backgroundImage: `url(${item.MAIN_IMG_THUMB})`}}
               >
               </div>
               <div className='description'>
+                <StarRating />
                 <h2>{item.MAIN_TITLE}</h2>
                 <p>{item.GUGUN_NM}</p>
                 <p>대표 메뉴</p>

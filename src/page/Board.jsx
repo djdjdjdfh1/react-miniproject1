@@ -3,8 +3,10 @@ import KakaoMapComp from '../components/KakaoMapComp';
 import JsonData from '../context/JsonData';
 import { useContext, useState } from 'react';
 import { useParams } from 'react-router-dom'
-import { useNavigate } from 'react-router-dom';
 import '../css/board.css'
+
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faStar } from "@fortawesome/free-solid-svg-icons";
 
 export default function Board() {
   const { state, action, func } = useContext(JsonData);
@@ -51,8 +53,8 @@ export default function Board() {
         UC_SEQ: item.UC_SEQ,
         img: item.MAIN_IMG_THUMB,
         title: item.MAIN_TITLE,
-        address: item.ADDR1,
-        time: item.USAGE_DAY_WEEK_AND_TIME
+        address: item.GUGUN_NM,
+        menu: item.RPRSNTV_MENU
       })
       setLikelist(addList);
     }
@@ -74,7 +76,7 @@ export default function Board() {
           <div 
             className={ likelist.find((like)=>(like.UC_SEQ === oneMenu.UC_SEQ)) ? "click-like" : "like"}
             onClick={()=>{handleLike(oneMenu)}}
-            >
+          >
           </div>
           <p>좋아요</p>
         </div>
