@@ -20,3 +20,32 @@
 .comment {
     border: 1px solid black;
 }
+
+.board-box {
+    margin: auto;
+    width: 40%;
+}
+
+/* 좋아요 이모티콘 */
+.like {
+    background-image: url(../img/heart.svg);
+    width: 30px;
+    height: 30px;
+    margin: auto; 
+    margin-bottom: 5px;
+}
+.click-like {
+    background-image: url(../img/heart1.svg);
+    width: 30px;
+    height: 30px;
+    margin: auto; 
+    margin-bottom: 5px;
+}
+
+.like-border {
+    display: inline-block;
+    border: 2px solid black;
+    padding: 5px 5px 0 5px;
+    position: absolute;
+    right: 30%;
+}

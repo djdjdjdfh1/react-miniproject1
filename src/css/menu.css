@@ -61,18 +61,3 @@ input[type='submit'] {
     word-break: break-all;
     padding-bottom: 15px ;
 }
-/* 좋아요 이모티콘 */
-.like {
-    position: absolute;
-    background-image: url(../img/heart.svg);
-    width: 30px;
-    height: 30px;
-    right: 0;
-}
-.click-like {
-    position: absolute;
-    background-image: url(../img/heart1.svg);
-    width: 30px;
-    height: 30px;
-    right: 0;
-}

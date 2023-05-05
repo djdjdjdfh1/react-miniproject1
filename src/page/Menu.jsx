@@ -53,23 +53,7 @@ export default function Menu() {
     if (indexOfLastItem >= menuList.length) {
       document.getElementById("load-button").style.display = "none";
     }
-  }, [indexOfLastItem, menuList.length])
-
-  const handleLike = (item) => {
-    if(likelist.find((like)=>(like.UC_SEQ === item.UC_SEQ))) {
-      const remainList = likelist.filter((l)=>(l.UC_SEQ !== item.UC_SEQ))
-      setLikelist(remainList);
-    } else {
-      const addList = likelist.concat({
-        UC_SEQ: item.UC_SEQ,
-        img: item.MAIN_IMG_THUMB,
-        title: item.MAIN_TITLE,
-        address: item.ADDR1,
-        time: item.USAGE_DAY_WEEK_AND_TIME
-      })
-      setLikelist(addList);
-    }
-  }  
+  }, [indexOfLastItem, menuList.length]) 
 
   const [selectedValue, setSelectedValue] = useState("");
 
@@ -115,13 +99,7 @@ export default function Menu() {
             <div
             className='img-box'
             > 
-              {/* 좋아요 이모티콘 */}
-              <div 
-              className={ likelist.find((like)=>(like.UC_SEQ === item.UC_SEQ)) ? "click-like" : "like"}
-              onClick={()=>{handleLike(item)}}
-              >
-              </div>
-
+            
               {/* 미니창 */}
               <div className='img' 
               style={{backgroundImage: `url(${item.MAIN_IMG_THUMB})`}}

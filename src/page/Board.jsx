@@ -8,8 +8,8 @@ import '../css/board.css'
 
 export default function Board() {
   const { state, action, func } = useContext(JsonData);
-  const { menuList, commentList, num } = state;
-  const { setCommentList, setNum } = action;
+  const { menuList, commentList, num, likelist } = state;
+  const { setCommentList, setNum, setLikelist } = action;
   const { getMenu } = func;
   const [oneMenu, setOneMenu] = useState("");
   const [loading, setLoading] = useState(false);
@@ -42,8 +42,24 @@ export default function Board() {
     setCommentList(newList);
   }
 
+  const handleLike = (item) => {
+    if(likelist.find((like)=>(like.UC_SEQ === item.UC_SEQ))) {
+      const remainList = likelist.filter((l)=>(l.UC_SEQ !== item.UC_SEQ))
+      setLikelist(remainList);
+    } else {
+      const addList = likelist.concat({
+        UC_SEQ: item.UC_SEQ,
+        img: item.MAIN_IMG_THUMB,
+        title: item.MAIN_TITLE,
+        address: item.ADDR1,
+        time: item.USAGE_DAY_WEEK_AND_TIME
+      })
+      setLikelist(addList);
+    }
+  }
+
   return (
-    <div style={{margin: "auto", width: "40%"}}>
+    <div className='board-box'>
       <div className='board-title'>
         {/* 가게명 */}
         <h1>{oneMenu.MAIN_TITLE}</h1>
@@ -52,6 +68,16 @@ export default function Board() {
       <div className='board-img' style={{backgroundImage: `url(${oneMenu.MAIN_IMG_THUMB})`}}></div>
       {/* 가게 설명 */}
       <div className='board-desc'>
+        
+        {/* 좋아요 이모티콘 */}
+        <div className='like-border'>
+          <div 
+            className={ likelist.find((like)=>(like.UC_SEQ === oneMenu.UC_SEQ)) ? "click-like" : "like"}
+            onClick={()=>{handleLike(oneMenu)}}
+            >
+          </div>
+          <p>좋아요</p>
+        </div>
         <p className='bold' style={{marginTop:"20px"}}>가게명</p>
         <p>{oneMenu.MAIN_TITLE}</p>
         <p className='bold'>매장소개</p>
