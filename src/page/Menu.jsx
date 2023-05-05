@@ -12,6 +12,7 @@ import "slick-carousel/slick/slick-theme.css";
 import StarRating from '../components/StarRating';
 
 export default function Menu() {
+
   const {state, action, func} = useContext(JsonData);
   const {menuList, commentList} = state;
   const {setMenuList} = action;
@@ -66,35 +67,48 @@ export default function Menu() {
             <option value="review">리뷰 많은 순</option>
           </select>
         </div>
-        {
-          region.map((r)=>(
-            <button onClick={()=>{setSelectedMenu(r)}}>{r}</button>
-          ))
-        }
-
+        <div style={{textAlign: "center"}}>
+          {
+            region.map((r)=>(
+              <button 
+              style={{margin: "3px"}} 
+              onClick={()=>{setSelectedMenu(r)}}
+              >
+                {r}
+              </button>
+            ))
+          }
+        </div>
 
         <div className='box-wrap-ver2'>
           <Slider {...settings}>
-          {loading && filteredMenu.map((item)=>(
-          <Link key={item.UC_SEQ} to={`/menu/${item.UC_SEQ}`}>
-            <div
-            className='img-box'
-            > 
-              {/* 미니창 */}
-              <div className='img' 
-              style={{backgroundImage: `url(${item.MAIN_IMG_THUMB})`}}
-              >
-              </div>
-              <div className='description'>
-                <StarRating />
-                <h2>{item.MAIN_TITLE}</h2>
-                <p>{item.GUGUN_NM}</p>
-                <p>대표 메뉴</p>
-                <p>{item.RPRSNTV_MENU}</p>
-              </div>
-            </div>
-          </Link>
-          ))}
+            {loading && filteredMenu.map((item)=>{
+              // UC_SEQ가 일치하는 commentList 항목 추출
+              const commentItems = commentList.filter((comment) => comment.UC_SEQ === item.UC_SEQ);
+              // 리뷰 개수 계산
+              const reviewCount = commentItems.length;
+              return(
+                <Link key={item.UC_SEQ} to={`/menu/${item.UC_SEQ}`}>
+                  <div
+                  className='img-box'
+                  > 
+                    {/* 미니창 */}
+                    <div className='img' 
+                    style={{backgroundImage: `url(${item.MAIN_IMG_THUMB})`}}
+                    >
+                    </div>
+                    <div className='description'>
+                      <StarRating />
+                      <h2>{item.MAIN_TITLE}</h2>
+                      <p>{item.GUGUN_NM}</p>
+                      <p>대표 메뉴</p>
+                      <p>{item.RPRSNTV_MENU}</p>
+                      <p>리뷰: {reviewCount}</p>
+                    </div>
+                  </div>
+                </Link>
+              )
+            })}
           </Slider>
         </div>
     </div>

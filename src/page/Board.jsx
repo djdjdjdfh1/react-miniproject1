@@ -61,6 +61,12 @@ export default function Board() {
     }
   }
 
+  const [rating, setRating] = useState(null);
+
+  const handleRating = (rating) => {
+    setRating(rating);
+  }
+
   return (
     <div className='board-box'>
       <div className='board-title'>
@@ -120,7 +126,8 @@ export default function Board() {
           setStar("");
         }}
       > 
-        <StarRating />
+        <StarRating callRating={handleRating}/>
+        <p>별점: {rating}</p>
         <label htmlFor="">별점 </label>
         <input 
           type="number" 

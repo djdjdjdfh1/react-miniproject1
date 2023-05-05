@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faStar } from "@fortawesome/free-solid-svg-icons";
 
-export default function StarRating() {
+export default function StarRating(props) {
   const [rating, setRating] = useState(null);  
   const [hover, setHover] = useState(null);  
 
@@ -17,7 +17,10 @@ export default function StarRating() {
                         type="radio" 
                         name="rating" 
                         value="ratingValue" 
-                        onClick={() => setRating(ratingValue)}
+                        onClick={() => {
+                            setRating(ratingValue)
+                            props.callRating(ratingValue); 
+                        }}
                     />  
                     <FontAwesomeIcon 
                     className='star'
