@@ -1,12 +1,8 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useContext, useState } from 'react'
 import KakaoMapComp from '../components/KakaoMapComp';
 import JsonData from '../context/JsonData';
-import { useContext, useState } from 'react';
 import { useParams } from 'react-router-dom'
 import '../css/board.css'
-
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faStar } from "@fortawesome/free-solid-svg-icons";
 import StarRating from '../components/StarRating';
 
 export default function Board() {
@@ -113,6 +109,9 @@ export default function Board() {
             <li>익명</li>
             <li>{comment.text}</li>
             <li>별점: {comment.rating}</li>
+            <li>
+              <StarRating callRating={handleRating}/>
+            </li>
           </ul>
         ))
       }
