@@ -91,23 +91,23 @@ export default function Main() {
           <div className='box-wrap' style={{paddingTop: "140px"}}>
               {loading && ranMenu.map((item)=>(
                 <Link key={item.UC_SEQ} to={`/menu/${item.UC_SEQ}`}>
-                <div 
-                key={item.UC_SEQ}
-                className='img-box'
-                > 
-                  {/* 미니창 */}
                   <div 
-                    className='img' 
-                    style={{backgroundImage: `url(${item.MAIN_IMG_THUMB})`}}
-                    >
+                  key={item.UC_SEQ}
+                  className='img-box'
+                  > 
+                    {/* 미니창 */}
+                    <div 
+                      className='img' 
+                      style={{backgroundImage: `url(${item.MAIN_IMG_THUMB})`}}
+                      >
+                    </div>
+                    <div className='description'>
+                      <h2>{item.MAIN_TITLE}</h2>
+                      <p>{item.GUGUN_NM}</p>
+                      <p>대표 메뉴</p>
+                      <p>{item.RPRSNTV_MENU}</p>
+                    </div>
                   </div>
-                  <div className='description'>
-                    <h2>{item.MAIN_TITLE}</h2>
-                    <p>{item.GUGUN_NM}</p>
-                    <p>대표 메뉴</p>
-                    <p>{item.RPRSNTV_MENU}</p>
-                  </div>
-                </div>
                 </Link>
               ))}
             </div>

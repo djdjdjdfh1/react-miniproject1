@@ -7,6 +7,7 @@ import '../css/board.css'
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faStar } from "@fortawesome/free-solid-svg-icons";
+import StarRating from '../components/StarRating';
 
 export default function Board() {
   const { state, action, func } = useContext(JsonData);
@@ -118,7 +119,8 @@ export default function Board() {
           setText("");
           setStar("");
         }}
-      >
+      > 
+        <StarRating />
         <label htmlFor="">별점 </label>
         <input 
           type="number" 
