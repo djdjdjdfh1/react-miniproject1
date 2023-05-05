@@ -18,7 +18,8 @@ export default function Menu() {
   const {getMenu} = func;
 
   const [loading, setLoading] = useState(false);
-
+  const [selectedMenu, setSelectedMenu] = useState("부산전체");
+  const region = ["부산전체", "강서구", "영도구", "연제구", "중구", "해운대구", "동구", "서구", "남구", "북구", "금정구", "동래구", "사하구", "사상구", "부산진구", "수영구", "기장군"];
   
   useEffect(()=>{getMenu()}, []);
   useEffect(()=>{
@@ -27,20 +28,7 @@ export default function Menu() {
     }
   }, [menuList])
 
-  const [currentPage, setCurrentPage] = useState(1);
-  const [itemsPerPage, setItemsPerPage] = useState(150);
-  const indexOfLastItem = currentPage * itemsPerPage;
-  const currentItems = menuList.slice(0, indexOfLastItem);
-  
-  const handleLoadMore = () => {
-    setCurrentPage(currentPage + 1);
-  }
-
-  useEffect(()=>{
-    if (indexOfLastItem >= menuList.length) {
-      document.getElementById("load-button").style.display = "none";
-    }
-  }, [indexOfLastItem, menuList.length]) 
+  const filteredMenu = selectedMenu === "부산전체" ? menuList : menuList.filter((menu) => (menu.GUGUN_NM === selectedMenu));
 
   const [selectedValue, setSelectedValue] = useState("");
 
@@ -78,10 +66,16 @@ export default function Menu() {
             <option value="review">리뷰 많은 순</option>
           </select>
         </div>
+        {
+          region.map((r)=>(
+            <button onClick={()=>{setSelectedMenu(r)}}>{r}</button>
+          ))
+        }
+
 
         <div className='box-wrap-ver2'>
           <Slider {...settings}>
-          {loading && currentItems.map((item)=>(
+          {loading && filteredMenu.map((item)=>(
           <Link key={item.UC_SEQ} to={`/menu/${item.UC_SEQ}`}>
             <div
             className='img-box'
@@ -102,18 +96,6 @@ export default function Menu() {
           </Link>
           ))}
           </Slider>
-
-          { 
-            currentItems && (
-            <button 
-            id="load-button"
-            onClick={()=>{handleLoadMore()}}
-            style={{display: "block", margin: "auto"}}
-            >
-              Load More
-            </button>
-            )      
-          }
         </div>
     </div>
   )
