@@ -35,8 +35,9 @@ input[type='submit'] {
     margin-left: 100px;
 }
 .box-wrap-ver2 {
-    width: 90%;
-    margin-left: 100px;
+    width: 95%;
+    margin: auto;
+    margin-left: 70px;
 }
 /* 레이아웃 어긋나는 핵심 코드들*/
 .img-box {

@@ -19,8 +19,7 @@ import { faStar, faChevronRight, faChevronLeft } from "@fortawesome/free-solid-s
         icon={faChevronRight}
         onClick={onClick}
         type='button'
-        style={{ ...style, display: "inline-block", color: "darkgray",
-        cursor: "pointer", width:"40px", height:"40px", right:"10px"}}
+        style={{ ...style, position: "absolute", display: "inline-block", color: "darkgray", zIndex: "10", cursor: "pointer", width:"40px", height:"40px", top: "180", right:"0%"}}
       >
       </FontAwesomeIcon>
     );
@@ -32,8 +31,7 @@ import { faStar, faChevronRight, faChevronLeft } from "@fortawesome/free-solid-s
         icon={faChevronLeft}
         onClick={onClick}
         type='button'
-        style={{ ...style, display: "inline-block", color: "darkgray", 
-        cursor: "pointer", width:"40px", height:"40px", left:"10px"}}
+        style={{ ...style, position: "absolute", display: "inline-block", color: "darkgray", zIndex: "10", cursor: "pointer", width:"40px", height:"40px", top: "180", left:"-5%"}}
       >
       </FontAwesomeIcon>
     );
@@ -92,7 +90,7 @@ export default function Menu() {
   }
 
   return (
-    <div className='background'>
+    <div style={{paddingTop: "80px" }}>
         <div className='menu-header'>
           <h1>전체</h1>
           <select value={selectedValue} onChange={handleSelect}>
@@ -100,7 +98,7 @@ export default function Menu() {
             <option value="review">리뷰 많은 순</option>
           </select>
         </div>
-        <div style={{textAlign: "center"}}>
+        <div style={{textAlign: "center", paddingBottom: "30px"}}>
           {
             region.map((r, i)=>(
               <button 
