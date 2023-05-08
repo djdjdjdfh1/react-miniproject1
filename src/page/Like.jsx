@@ -1,8 +1,10 @@
-import React, { useContext, useState } from 'react'
+import React, { useContext } from 'react'
 import { Link } from 'react-router-dom';
 import '../css/menu.css'
 import JsonData from '../context/JsonData';
-import StarRating from '../components/StarRating';
+
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faStar } from "@fortawesome/free-solid-svg-icons";
 
 export default function Like() {
   const { state } = useContext(JsonData);
@@ -12,15 +14,20 @@ export default function Like() {
     const commentItems = commentList.filter((comment) => comment.UC_SEQ === item.UC_SEQ);
     return commentItems.length;
   });
-  console.log(reviewCounts);
 
   return (
     <div className='background' style={{minHeight: "100vh"}}>
-        <h1 style={{padding: "20px"}}>Like</h1>
-        <p style={{padding: "20px"}}>좋아요를 누른 가게가 표시됩니다</p>
+        <h1 style={{padding: "20px", fontSize: "2rem"}}>Like</h1>
+        <p style={{padding: "20px", fontSize: "1.4rem"}}>좋아요를 누른 가게가 표시됩니다</p>
 
         <div className='box-wrap'>
-          {likelist.map((item, index)=>(
+          {likelist.map((item, index)=>{
+            const commentItems = commentList.filter((comment) => comment.UC_SEQ === item.UC_SEQ);
+            const ratingList = commentItems.map((comment) => comment.rating);
+            const averageRating = ratingList.reduce((acc, cur) => acc + cur, 0) / ratingList.length;
+            const ratingAvr = isNaN(averageRating) ? '평가중' : averageRating.toFixed(1);
+
+            return (
             <Link key={item.UC_SEQ} to={`/menu/${item.UC_SEQ}`}>
               <div 
               key={item.UC_SEQ}
@@ -30,6 +37,16 @@ export default function Like() {
                 style={{backgroundImage: `url(${item.img})`}}              
                 >
                 </div>
+                {
+                isNaN(averageRating) ? <h2 style={{display:"inline", color: "#9e9e9e"}}>평가중</h2> : <>
+                    <FontAwesomeIcon 
+                      icon={faStar} 
+                      color={"#ffc107"}
+                      style={{fontSize: "2rem", display: "inline-block"}}
+                    />
+                    <h2 style={{display:"inline"}}>{ratingAvr}</h2>
+                  </>
+                }
                 <h2>{item.title}</h2>
                 <p>{item.address}</p>
                 <p>대표메뉴</p>
@@ -37,7 +54,8 @@ export default function Like() {
                 <p>리뷰: {reviewCounts[index]}</p>
               </div>
             </Link>
-          ))}
+            )
+          })}
         </div>
     </div>
   )

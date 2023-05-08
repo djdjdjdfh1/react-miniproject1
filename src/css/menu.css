@@ -28,22 +28,21 @@ input[type='submit'] {
 
 /* 그리드 가운데 정렬 */
 .box-wrap {
-    width: 100%;
     margin: auto;
     display: grid;
     grid-template-columns: 450px 450px 450px;
     margin-left: 100px;
 }
 .box-wrap-ver2 {
-    width: 95%;
+    width: 100%;
     margin: auto;
-    margin-left: 70px;
 }
 /* 레이아웃 어긋나는 핵심 코드들*/
 .img-box {
     width: 400px;
     height: 180px;
-    margin: 10px; 
+    margin: auto;
+    margin-bottom: 20px; 
 }
 .img-box .img {
     width: 230px;    
@@ -60,7 +59,7 @@ input[type='submit'] {
     font-family: 'font-iropke-batang';
     font-size: 1.2rem;
     font-weight: bold;
-    padding: 0 0 20px 0;
+    padding: 10px 0 20px 0;
     overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;

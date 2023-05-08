@@ -13,7 +13,7 @@ import "slick-carousel/slick/slick-theme.css";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faStar, faChevronRight, faChevronLeft } from "@fortawesome/free-solid-svg-icons";
 
-  const NextArrow = ({ onClick, style }) => { // props로 onClick을 전달해줘야 한다.
+  const NextArrow = ({ onClick, style }) => { 
     return (
       <FontAwesomeIcon
         icon={faChevronRight}
@@ -31,7 +31,7 @@ import { faStar, faChevronRight, faChevronLeft } from "@fortawesome/free-solid-s
         icon={faChevronLeft}
         onClick={onClick}
         type='button'
-        style={{ ...style, position: "absolute", display: "inline-block", color: "darkgray", zIndex: "10", cursor: "pointer", width:"40px", height:"40px", top: "180", left:"-5%"}}
+        style={{ ...style, position: "absolute", display: "inline-block", color: "darkgray", zIndex: "10", cursor: "pointer", width:"40px", height:"40px", top: "180", left:"0%"}}
       >
       </FontAwesomeIcon>
     );
@@ -119,6 +119,11 @@ export default function Menu() {
               const commentItems = commentList.filter((comment) => comment.UC_SEQ === item.UC_SEQ);
               // 리뷰 개수 계산
               const reviewCount = commentItems.length;
+
+              const ratingList = commentItems.map((comment) => comment.rating);
+              const averageRating = ratingList.reduce((acc, cur) => acc + cur, 0) / ratingList.length;
+              const ratingAvr = isNaN(averageRating) ? '평가중' : averageRating.toFixed(1);
+              
               return(
                 <Link key={item.UC_SEQ} to={`/menu/${item.UC_SEQ}`}>
                   <div
@@ -130,10 +135,17 @@ export default function Menu() {
                     >
                     </div>
                     <div className='description'>
-                      <FontAwesomeIcon 
-                      icon={faStar} 
-                      color={"#ffc107"}
-                      />
+                      {
+                        isNaN(averageRating) ? <h2 style={{display:"inline", color: "#9e9e9e"}}>평가중</h2> : 
+                          <>
+                            <FontAwesomeIcon 
+                              icon={faStar} 
+                              color={"#ffc107"}
+                              style={{fontSize: "2rem", display: "inline-block"}}
+                            />
+                            <h2 style={{display:"inline"}}>{ratingAvr}</h2>
+                          </>
+                      }
                       <h2>{item.MAIN_TITLE}</h2>
                       <p>{item.GUGUN_NM}</p>
                       <p>대표 메뉴</p>

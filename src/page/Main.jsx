@@ -17,6 +17,9 @@ import "../css/styles.css";
 
 import {SectionsContainer, Section} from 'react-fullpage';
 
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faStar } from "@fortawesome/free-solid-svg-icons";
+
 export default function Main() {
 
   let options = {
@@ -25,7 +28,7 @@ export default function Main() {
 
   const [ranMenu, setRanMenu] = useState([]);
   const { state, func } = useContext(JsonData);
-  const { menuList } = state;
+  const { menuList, commentList } = state;
   const { getMenu } = func;
   const [loading, setLoading] = useState(false);
   useEffect(()=>{getMenu()}, [])
@@ -48,7 +51,6 @@ export default function Main() {
       setRanMenu(a);
     }
     genRandom2();
-    console.log(ranMenu);
   }, [menuList])
 
   return (
@@ -89,7 +91,13 @@ export default function Main() {
         <Section>
           {/* 랜덤음식박스 */}  
           <div className='box-wrap' style={{paddingTop: "140px"}}>
-              {loading && ranMenu.map((item)=>(
+              {loading && ranMenu.map((item)=>{
+                const commentItems = commentList.filter((comment) => comment.UC_SEQ === item.UC_SEQ);
+                const ratingList = commentItems.map((comment) => comment.rating);
+                const averageRating = ratingList.reduce((acc, cur) => acc + cur, 0) / ratingList.length;
+                const ratingAvr = isNaN(averageRating) ? '평가중' : averageRating.toFixed(1);
+                
+                return(
                 <Link key={item.UC_SEQ} to={`/menu/${item.UC_SEQ}`}>
                   <div 
                   key={item.UC_SEQ}
@@ -102,6 +110,17 @@ export default function Main() {
                       >
                     </div>
                     <div className='description'>
+                      {
+                        isNaN(averageRating) ? <h2 style={{display:"inline", color: "#9e9e9e"}}>평가중</h2> : 
+                        <>
+                          <FontAwesomeIcon 
+                            icon={faStar} 
+                            color={"#ffc107"}
+                            style={{fontSize: "2rem", display: "inline-block"}}
+                          />
+                          <h2 style={{display:"inline"}}>{ratingAvr}</h2>
+                        </>
+                      }
                       <h2>{item.MAIN_TITLE}</h2>
                       <p>{item.GUGUN_NM}</p>
                       <p>대표 메뉴</p>
@@ -109,7 +128,8 @@ export default function Main() {
                     </div>
                   </div>
                 </Link>
-              ))}
+                )
+              })}
             </div>
         </Section>
       </SectionsContainer>
