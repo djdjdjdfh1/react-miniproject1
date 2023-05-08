@@ -4,7 +4,6 @@ import { faStar } from "@fortawesome/free-solid-svg-icons";
 
 export default function StarRating(props) {
   const [rating, setRating] = useState(null);  
-  const [hover, setHover] = useState(null);  
 
   return (
     <div>
@@ -18,21 +17,18 @@ export default function StarRating(props) {
                         name="rating" 
                         value="ratingValue" 
                         onClick={() => {
-                            setRating(ratingValue)
-                            props.callRating(ratingValue); 
+                            setRating(ratingValue);
+                            props.value(ratingValue);
                         }}
                     />  
                     <FontAwesomeIcon 
                     className='star'
-                    color={ratingValue <= (hover || rating) ? "#ffc107" : "#e4e5e9"} 
-                    icon={faStar} 
-                    onMouseEnter={() => setHover(ratingValue)}
-                    onMouseLeave={() => setHover(null)} 
+                    color={ratingValue <= rating ? "#ffc107" : "#e4e5e9"} 
+                    icon={faStar}  
                     />
                 </label>
             );
         })}
-        <p>The rating is {rating}.</p>
     </div>
   )
 }

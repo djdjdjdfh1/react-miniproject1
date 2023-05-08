@@ -9,10 +9,37 @@ import { Link } from 'react-router-dom';
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import StarRating from '../components/StarRating';
+
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faStar, faChevronRight, faChevronLeft } from "@fortawesome/free-solid-svg-icons";
+
+  const NextArrow = ({ onClick, style }) => { // props로 onClick을 전달해줘야 한다.
+    return (
+      <FontAwesomeIcon
+        icon={faChevronRight}
+        onClick={onClick}
+        type='button'
+        style={{ ...style, display: "inline-block", color: "darkgray",
+        cursor: "pointer", width:"40px", height:"40px", right:"10px"}}
+      >
+      </FontAwesomeIcon>
+    );
+  };
+
+  const PrevArrow = ({ onClick, style }) => {
+    return (
+      <FontAwesomeIcon
+        icon={faChevronLeft}
+        onClick={onClick}
+        type='button'
+        style={{ ...style, display: "inline-block", color: "darkgray", 
+        cursor: "pointer", width:"40px", height:"40px", left:"10px"}}
+      >
+      </FontAwesomeIcon>
+    );
+  };
 
 export default function Menu() {
-
   const {state, action, func} = useContext(JsonData);
   const {menuList, commentList} = state;
   const {setMenuList} = action;
@@ -21,8 +48,25 @@ export default function Menu() {
   const [loading, setLoading] = useState(false);
   const [selectedMenu, setSelectedMenu] = useState("부산전체");
   const region = ["부산전체", "강서구", "영도구", "연제구", "중구", "해운대구", "동구", "서구", "남구", "북구", "금정구", "동래구", "사하구", "사상구", "부산진구", "수영구", "기장군"];
-  
-  useEffect(()=>{getMenu()}, []);
+    
+  const settings = {
+    autoplay: true,
+    autoplaySpeed: 5000,
+    rows: 2,
+    dots: true,
+    infinite: true,
+    speed: 500,
+    slidesToShow: 3,
+    slidesToScroll: 3,
+    nextArrow: <NextArrow />,
+    prevArrow: <PrevArrow />
+  };
+
+  useEffect(()=>{
+    if(!menuList) {
+      getMenu()
+    }
+  }, []);
   useEffect(()=>{
     if(menuList.length>0) {
         setLoading(true);
@@ -47,17 +91,6 @@ export default function Menu() {
     } 
   }
 
-  const settings = {
-    autoplay: true,
-    autoplaySpeed: 5000,
-    rows: 2,
-    dots: true,
-    infinite: true,
-    speed: 500,
-    slidesToShow: 3,
-    slidesToScroll: 3
-  };
-
   return (
     <div className='background'>
         <div className='menu-header'>
@@ -69,8 +102,9 @@ export default function Menu() {
         </div>
         <div style={{textAlign: "center"}}>
           {
-            region.map((r)=>(
+            region.map((r, i)=>(
               <button 
+              key={i}
               style={{margin: "3px"}} 
               onClick={()=>{setSelectedMenu(r)}}
               >
@@ -98,7 +132,10 @@ export default function Menu() {
                     >
                     </div>
                     <div className='description'>
-                      <StarRating />
+                      <FontAwesomeIcon 
+                      icon={faStar} 
+                      color={"#ffc107"}
+                      />
                       <h2>{item.MAIN_TITLE}</h2>
                       <p>{item.GUGUN_NM}</p>
                       <p>대표 메뉴</p>
