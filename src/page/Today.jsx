@@ -25,14 +25,15 @@ export default function Today() {
   const commentItems = commentList.filter((comment) => comment.UC_SEQ === ranMenu[0]?.UC_SEQ);
   const reviewCount = commentItems.length;
 
+  const ratingList = commentItems.map((comment) => comment.rating);
+  const averageRating = ratingList.reduce((acc, cur) => acc + cur, 0) / ratingList.length;
+  const ratingAvr = isNaN(averageRating) ? '평가중' : averageRating.toFixed(1);
+
   return (
     <div className='background'>
         <h1 style={{fontSize: "1.7rem", textAlign: "center", padding: "20px"}}>오늘의 메뉴 추천</h1>       
         <div>
           {loading && ranMenu.map((item)=>{
-            const ratingList = commentItems.map((comment) => comment.rating);
-            const averageRating = ratingList.reduce((acc, cur) => acc + cur, 0) / ratingList.length;
-            const ratingAvr = isNaN(averageRating) ? '평가중' : averageRating.toFixed(1);
             
             return(
             <Link key={item.UC_SEQ} to={`/menu/${item.UC_SEQ}`}>

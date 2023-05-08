@@ -1,10 +1,7 @@
-import React from 'react'
-import { useState } from 'react';
-import { useEffect } from 'react';
-import { useContext } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
+import { Link } from 'react-router-dom';
 import JsonData from '../context/JsonData';
 import '../css/menu.css'
-import { Link } from 'react-router-dom';
 
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
@@ -50,10 +47,10 @@ export default function Menu() {
   const settings = {
     autoplay: true,
     autoplaySpeed: 5000,
-    rows: 2,
     dots: true,
     infinite: true,
     speed: 500,
+    rows: 2,
     slidesToShow: 3,
     slidesToScroll: 3,
     nextArrow: <NextArrow />,
@@ -86,7 +83,21 @@ export default function Menu() {
         return bCommentCnt - aCommentCnt;
       });
       setMenuList(sortedMenuList);
-    } 
+    } else if(value === 'rating') {
+      const sortedMenuList = menuList.sort((a, b) => {
+        const aRatingList = commentList.filter(c => c.UC_SEQ === a.UC_SEQ).map(c => c.rating);
+        const bRatingList = commentList.filter(c => c.UC_SEQ === b.UC_SEQ).map(c => c.rating);
+        
+        const aRatingAvg = 
+        isNaN(aRatingList.reduce((acc, cur) => acc + cur, 0) / aRatingList.length) ? 0 : aRatingList.reduce((acc, cur) => acc + cur, 0) / aRatingList.length;
+        
+        const bRatingAvg = 
+        isNaN(bRatingList.reduce((acc, cur) => acc + cur, 0) / bRatingList.length) ? 0 : bRatingList.reduce((acc, cur) => acc + cur, 0) / bRatingList.length;
+        
+        return bRatingAvg - aRatingAvg;
+      });
+      setMenuList(sortedMenuList);
+    }
   }
 
   return (
@@ -96,6 +107,7 @@ export default function Menu() {
           <select value={selectedValue} onChange={handleSelect}>
             <option value="index">기본순</option> 
             <option value="review">리뷰 많은 순</option>
+            <option value="rating">별점 순</option>
           </select>
         </div>
         <div style={{textAlign: "center", paddingBottom: "30px"}}>
@@ -115,9 +127,7 @@ export default function Menu() {
         <div className='box-wrap-ver2'>
           <Slider {...settings}>
             {loading && filteredMenu.map((item)=>{
-              // UC_SEQ가 일치하는 commentList 항목 추출
               const commentItems = commentList.filter((comment) => comment.UC_SEQ === item.UC_SEQ);
-              // 리뷰 개수 계산
               const reviewCount = commentItems.length;
 
               const ratingList = commentItems.map((comment) => comment.rating);

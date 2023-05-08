@@ -31,7 +31,7 @@ input[type='submit'] {
     margin: auto;
     display: grid;
     grid-template-columns: 450px 450px 450px;
-    margin-left: 100px;
+    margin-left: 95px;
 }
 .box-wrap-ver2 {
     width: 100%;
