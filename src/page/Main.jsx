@@ -27,12 +27,10 @@ export default function Main() {
   };
 
   const [ranMenu, setRanMenu] = useState([]);
-  const { state, func } = useContext(JsonData);
+  const { state } = useContext(JsonData);
   const { menuList, commentList } = state;
-  const { getMenu } = func;
   const [loading, setLoading] = useState(false);
   
-  useEffect(()=>{getMenu()}, [])
   useEffect(()=>{
     // menuList의 처음값이 빈값으로 들어감
     // 빈값이 아닌 값이 들어갔을때 화면에 출력
