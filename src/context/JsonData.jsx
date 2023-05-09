@@ -1,24 +1,13 @@
 import React, {useState} from 'react'
 import data from '../data/dummy.json'
-import { useContext } from 'react';
 
 const JsonData = React.createContext("");
 
 const JsonProvider = ({children}) => {
-    const {getFoodkr} = useContext(data);
-    const {item} = getFoodkr ;
-    const [menuList, setMenuList] = useState();
-    setMenuList(item);
+    const [menuList, setMenuList] = useState(data.getFoodKr.item);
     const [num, setNum] = useState(17);
     const [likelist, setLikelist] = useState([]);
 
-    /*const getMenu = async()=> {
-        const promise = await fetch(
-        "http://apis.data.go.kr/6260000/FoodService/getFoodKr?serviceKey=kbdzVMi2epmiXU2EiAFMtH8wc1aeUX7uisnfxHS26jeglsuSc0rdvJJbCYWgZfO5YlhZy0Bi%2Fl9XO9ufa5xdgQ%3D%3D&numOfRows=150&pageNo=1&resultType=json"
-        );
-        const response = await promise.json();
-        setMenuList(response.getFoodKr.item);
-    } */
     const [commentList, setCommentList] = useState(
         [
             {

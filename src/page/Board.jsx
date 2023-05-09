@@ -7,16 +7,14 @@ import StarRating from '../components/StarRating';
 import ShowRating from '../components/ShowRating';
 
 export default function Board() {
-  const { state, action, func } = useContext(JsonData);
+  const { state, action } = useContext(JsonData);
   const { menuList, commentList, num, likelist } = state;
   const { setCommentList, setNum, setLikelist } = action;
-  const { getMenu } = func;
   const [oneMenu, setOneMenu] = useState("");
   const [loading, setLoading] = useState(false);
   const {id} = useParams();
   const [text, setText] = useState("");
 
-  useEffect(()=>{getMenu()},[])
   useEffect(()=>{
     if(menuList.length>0) {
       const menu = menuList.find((menu)=>(menu.UC_SEQ === Number(id)))

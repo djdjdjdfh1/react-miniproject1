@@ -35,10 +35,9 @@ import { faStar, faChevronRight, faChevronLeft } from "@fortawesome/free-solid-s
   };
 
 export default function Menu() {
-  const {state, action, func} = useContext(JsonData);
+  const {state, action} = useContext(JsonData);
   const {menuList, commentList} = state;
   const {setMenuList} = action;
-  const {getMenu} = func;
 
   const [loading, setLoading] = useState(false);
   const [selectedMenu, setSelectedMenu] = useState("부산전체");
@@ -57,11 +56,6 @@ export default function Menu() {
     prevArrow: <PrevArrow />
   };
 
-  useEffect(()=>{
-    if(!menuList) {
-      getMenu()
-    }
-  }, []);
   useEffect(()=>{
     if(menuList.length>0) {
         setLoading(true);
