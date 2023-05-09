@@ -101,22 +101,23 @@ export default function Board() {
       
       {/* 코멘트리스트 */}
       <div>
-        <p style={{padding: '20px'}}>음식점 리뷰</p>  
+        <p className='review'>음식점 리뷰</p>  
       {                
         comments.map((comment)=>(
           <ul className='comment'>
-            <li>작성자: 익명</li>
-            <li>내용: {comment.text}</li>
             <li>
               <ShowRating rating={comment.rating}/>
             </li>
+            <li>작성자: 익명</li>
+            <li>내용: {comment.text}</li>
           </ul>
         ))
       }
 
       {/* 코멘트 작성양식 */}
+      <h1 className='review-write'>리뷰작성</h1>
       <form 
-        style={{backgroundColor: 'lightblue'}}
+        className='comment-form'
         onSubmit={(e)=>{
           e.preventDefault();
           addComment(oneMenu.UC_SEQ);
@@ -124,18 +125,20 @@ export default function Board() {
         }}
       > 
         {/* 별점평가 */}
-        <p>리뷰작성하기</p>
-        <div>
-          <StarRating value={handleStar}/>
-        </div>
-        <label htmlFor="">내용 </label>
-        <input 
+        <p style={{paddingTop: '10px'}}>리뷰</p>
+        <textarea
+          style={{marginTop: "20px"}}
           type="text"
           onChange={(e)=>(setText(e.target.value))}
           value={text}
-          placeholder='평가를 작성하세요.'
+          rows={8}
+          cols={80}
+          placeholder='리뷰를 작성하세요.'
           required
-        />
+        >
+        </textarea> 
+        <p>별점</p>
+        <StarRating value={handleStar}/>
         <input type="submit" value="등록" />
       </form>
       </div>

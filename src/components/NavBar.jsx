@@ -29,7 +29,7 @@ export default function NavBar() {
   return (
     <div 
     className='nav-box'
-    style={{ backgroundColor: isScrolled || isHovered ? '#F9E1CF' : 'white'}}
+    style={{ backgroundColor: isScrolled || isHovered ? 'white' : 'transparent'}}
     onMouseEnter={()=> setIsHovered(true)}
     onMouseLeave={()=> setIsHovered(false)}
     >   

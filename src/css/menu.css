@@ -25,6 +25,9 @@ input[type='submit'] {
     justify-content: space-between;
     padding: 20px;
 }
+.menu-header h1 {
+    font-size: 2rem;
+}
 
 /* 그리드 가운데 정렬 */
 .box-wrap {
