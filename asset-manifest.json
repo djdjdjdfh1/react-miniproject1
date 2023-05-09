@@ -1,0 +1,33 @@
+{
+  "files": {
+    "main.css": "/react-myproject/static/css/main.51993517.css",
+    "main.js": "/react-myproject/static/js/main.84a7941a.js",
+    "static/js/787.a8ad205b.chunk.js": "/react-myproject/static/js/787.a8ad205b.chunk.js",
+    "static/media/2.jpg": "/react-myproject/static/media/2.3ad8f5a4ff62333656e6.jpg",
+    "static/media/8.jpg": "/react-myproject/static/media/8.a608ff0b5e59d8c94f74.jpg",
+    "static/media/3.jpg": "/react-myproject/static/media/3.78f8d88fd76bbfd7382a.jpg",
+    "static/media/pork.jpg": "/react-myproject/static/media/pork.ad2cc1018779a4101163.jpg",
+    "static/media/chinese.jpg": "/react-myproject/static/media/chinese.b00501c09bfee0d93cd5.jpg",
+    "static/media/dongase.jpg": "/react-myproject/static/media/dongase.98a4ffdda86ec58ad057.jpg",
+    "static/media/chicken.jpg": "/react-myproject/static/media/chicken.3eb03bdd10e7f831cf45.jpg",
+    "static/media/ramen.jpg": "/react-myproject/static/media/ramen.73db3db6b53a12fada54.jpg",
+    "static/media/tteok.jpg": "/react-myproject/static/media/tteok.bccc6cd81a8584551949.jpg",
+    "static/media/hamburger.jpg": "/react-myproject/static/media/hamburger.326ffe8f667e8750641a.jpg",
+    "static/media/sushi.jpg": "/react-myproject/static/media/sushi.0d929ad4c3cae419479a.jpg",
+    "static/media/logo.svg": "/react-myproject/static/media/logo.6ce24c58023cc2f8fd88fe9d219db6c6.svg",
+    "static/media/slick.svg": "/react-myproject/static/media/slick.2630a3e3eab21c607e21.svg",
+    "static/media/slick.eot": "/react-myproject/static/media/slick.a4e97f5a2a64f0ab1323.eot",
+    "static/media/slick.ttf": "/react-myproject/static/media/slick.c94f7671dcc99dce43e2.ttf",
+    "static/media/slick.woff": "/react-myproject/static/media/slick.295183786cd8a1389865.woff",
+    "static/media/heart.svg": "/react-myproject/static/media/heart.c9b601ac84a739c74c19.svg",
+    "index.html": "/react-myproject/index.html",
+    "static/media/heart1.svg": "/react-myproject/static/media/heart1.9da3bc1cbcf4add453f2.svg",
+    "main.51993517.css.map": "/react-myproject/static/css/main.51993517.css.map",
+    "main.84a7941a.js.map": "/react-myproject/static/js/main.84a7941a.js.map",
+    "787.a8ad205b.chunk.js.map": "/react-myproject/static/js/787.a8ad205b.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.51993517.css",
+    "static/js/main.84a7941a.js"
+  ]
+}
