@@ -21,7 +21,7 @@ export default function Board() {
       setOneMenu(menu);
       setLoading(true);
     }
-  }, [menuList])
+  }, [])
   
   const comments = commentList.filter((c)=>(c.UC_SEQ === Number(id)))
   
