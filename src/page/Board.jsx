@@ -98,7 +98,7 @@ export default function Board() {
       {loading && <KakaoMapComp obj={oneMenu} />}
       
       {/* 코멘트리스트 */}
-      <div>
+      <div style={{marginBottom: "50px"}}>
         <p className='review'>음식점 리뷰</p>  
       {                
         comments.map((comment)=>(
