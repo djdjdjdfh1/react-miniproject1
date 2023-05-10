@@ -69,7 +69,7 @@ export default function Main() {
         </Section>
         <Section>
           {/* 카드 슬라이드 */}
-          <>
+          <div className='swiper-box'>
             <Swiper
               effect={"cards"}
               grabCursor={true}
@@ -84,7 +84,7 @@ export default function Main() {
               <SwiperSlide></SwiperSlide>
               <SwiperSlide></SwiperSlide>
             </Swiper>
-          </>
+          </div>
           <h1 className='slide-h1'>부산에 있는 다양한 음식들을 만나보세요</h1>
         </Section>
         <Section>

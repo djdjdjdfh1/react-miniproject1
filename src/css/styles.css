@@ -35,8 +35,12 @@ body {
   align-items: center;
 }
 
+.swiper-box {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 .swiper {
-  margin-top: 110px;
   width: 500px; /*240*/
   height: 400px; /*320*/
 }
