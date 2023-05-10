@@ -98,47 +98,48 @@ export default function Board() {
       {loading && <KakaoMapComp obj={oneMenu} />}
       
       {/* 코멘트리스트 */}
-      <div style={{marginBottom: "50px"}}>
+      <div>
         <p className='review'>음식점 리뷰</p>  
-      {                
-        comments.map((comment)=>(
-          <ul className='comment'>
-            <li>
-              <ShowRating rating={comment.rating}/>
-            </li>
-            <li>작성자: 익명</li>
-            <li>내용: {comment.text}</li>
-          </ul>
-        ))
-      }
+        {                
+          comments.map((comment)=>(
+            <ul className='comment'>
+              <li>
+                <ShowRating rating={comment.rating}/>
+              </li>
+              <li>작성자: 익명</li>
+              <li>내용: {comment.text}</li>
+            </ul>
+          ))
+        }
 
-      {/* 코멘트 작성양식 */}
-      <h1 className='review-write'>리뷰작성</h1>
-      <form 
-        className='comment-form'
-        onSubmit={(e)=>{
-          e.preventDefault();
-          addComment(oneMenu.UC_SEQ);
-          setText("");
-        }}
-      > 
-        {/* 별점평가 */}
-        <p style={{paddingTop: '10px'}}>리뷰</p>
-        <textarea
-          style={{marginTop: "20px"}}
-          type="text"
-          onChange={(e)=>(setText(e.target.value))}
-          value={text}
-          rows={8}
-          cols={80}
-          placeholder='리뷰를 작성하세요.'
-          required
-        >
-        </textarea> 
-        <p>별점</p>
-        <StarRating value={handleStar}/>
-        <input type="submit" value="등록" />
-      </form>
+        {/* 코멘트 작성양식 */}
+        <h1 className='review-write'>리뷰작성</h1>
+        <form 
+          style={{marginBottom: "50px"}}
+          className='comment-form'
+          onSubmit={(e)=>{
+            e.preventDefault();
+            addComment(oneMenu.UC_SEQ);
+            setText("");
+          }}
+        > 
+          {/* 별점평가 */}
+          <p style={{paddingTop: '10px'}}>리뷰</p>
+          <textarea
+            style={{marginTop: "20px"}}
+            type="text"
+            onChange={(e)=>(setText(e.target.value))}
+            value={text}
+            rows={8}
+            cols={80}
+            placeholder='리뷰를 작성하세요.'
+            required
+          >
+          </textarea> 
+          <p>별점</p>
+          <StarRating value={handleStar}/>
+          <input type="submit" value="등록" />
+        </form>
       </div>
     </div>
   )
