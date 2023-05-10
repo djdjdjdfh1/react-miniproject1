@@ -41,8 +41,9 @@ body {
   align-items: center;
 }
 .swiper {
-  width: 500px; /*240*/
-  height: 400px; /*320*/
+  padding-top: 350px;
+  width: 600px; /*240*/
+  height: 500px; /*320*/
 }
 
 .swiper-slide {

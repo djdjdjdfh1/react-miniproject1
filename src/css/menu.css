@@ -32,7 +32,7 @@ input[type='submit'] {
 /* 그리드 가운데 정렬 */
 .box-wrap {
     margin: auto;
-    padding-top: 200px;
+    padding-left: 200px;
     display: grid;
     grid-template-columns: 500px 500px 500px;
 }

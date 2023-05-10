@@ -89,7 +89,7 @@ export default function Main() {
         </Section>
         <Section>
           {/* 랜덤음식박스 */}  
-          <div className='box-wrap'>
+          <div className='box-wrap' style={{paddingTop: "140px"}}>
               {loading && ranMenu.map((item)=>{
                 const commentItems = commentList.filter((comment) => comment.UC_SEQ === item.UC_SEQ);
                 const ratingList = commentItems.map((comment) => comment.rating);
