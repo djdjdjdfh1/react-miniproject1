@@ -43,7 +43,7 @@ export default function Main() {
       const a = [];
       const mySet = new Set();  
 
-      while(mySet.size<6 && menuList.length !== 0) {
+      while(mySet.size<9 && menuList.length !== 0) {
         mySet.add(Math.floor(Math.random()*menuList.length))
       }
       mySet.forEach((n)=>a.push(menuList[n]))
@@ -89,7 +89,7 @@ export default function Main() {
         </Section>
         <Section>
           {/* 랜덤음식박스 */}  
-          <div className='box-wrap' style={{paddingTop: "140px"}}>
+          <div className='box-wrap'>
               {loading && ranMenu.map((item)=>{
                 const commentItems = commentList.filter((comment) => comment.UC_SEQ === item.UC_SEQ);
                 const ratingList = commentItems.map((comment) => comment.rating);
