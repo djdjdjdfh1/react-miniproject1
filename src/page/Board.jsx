@@ -115,7 +115,7 @@ export default function Board() {
         {/* 코멘트 작성양식 */}
         <h1 className='review-write'>리뷰작성</h1>
         <form 
-          style={{marginBottom: "50px"}}
+          style={{paddingBottom: "10px"}}
           className='comment-form'
           onSubmit={(e)=>{
             e.preventDefault();
