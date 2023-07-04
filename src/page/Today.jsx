@@ -45,7 +45,7 @@ export default function Today() {
 
                 {/* 미니창 */}
                 <div className= 'img' 
-                style={{backgroundImage: `url(${item.MAIN_IMG_THUMB})`}}        
+                style={{backgroundImage: `url(${item.MAIN_IMG_THUMB})`, backgroundColor: 'gray'}}        
                 >
                 </div>
                 {

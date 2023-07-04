@@ -105,7 +105,7 @@ export default function Main() {
                     {/* 미니창 */}
                     <div 
                       className='img' 
-                      style={{backgroundImage: `url(${item.MAIN_IMG_THUMB})`}}
+                      style={{backgroundImage: `url(${item.MAIN_IMG_THUMB})`, backgroundColor: 'gray'}}
                       >
                     </div>
                     <div className='description'>

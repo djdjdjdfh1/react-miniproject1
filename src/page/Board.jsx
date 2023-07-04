@@ -67,7 +67,7 @@ export default function Board() {
         <h1>{oneMenu.MAIN_TITLE}</h1>
       </div>
       {/* 음식 이미지 */}
-      <div className='board-img' style={{backgroundImage: `url(${oneMenu.MAIN_IMG_THUMB})`}}></div>
+      <div className='board-img' style={{backgroundImage: `url(${oneMenu.MAIN_IMG_THUMB})`, backgroundColor: 'gray'}}></div>
       {/* 가게 설명 */}
       <div className='board-desc'>
         

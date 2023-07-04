@@ -34,7 +34,7 @@ export default function Like() {
               className='img-box'
               > 
                 <div className= 'img' 
-                style={{backgroundImage: `url(${item.img})`}}              
+                style={{backgroundImage: `url(${item.img})`, backgroundColor: 'gray'}}              
                 >
                 </div>
                 {
